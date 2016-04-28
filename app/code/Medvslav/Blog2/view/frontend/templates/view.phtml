@@ -1,0 +1,30 @@
+<?php
+/**
+ * Blog2 template for separate item
+ *
+ */
+
+/**
+ * @var $this Medvslav\Blog2\Block\View
+ * @see Medvslav\Blog2\Block\View
+ */
+?>
+<?php $_blog2Item = $this->getBlog2(); ?>
+    <div class="blog2_item_subtitle">
+        <?php echo $this->formatDate($_blog2Item->getPublishedAt()) ?> |
+        <?php echo $this->escapeHtml($_blog2Item->getAuthor()) ?>
+    </div>
+
+<div class="blog2_item_view">
+    <?php if ($imageUrl = $this->getImageUrl($_blog2Item, 400)): ?>
+       <p><img src="<?php echo $imageUrl ?>" alt="<?php echo $this->escapeHtml($_blog2Item->getTitle()) ?>" /></p>
+    <?php endif; ?>
+
+    <div class="blog2_item_content"><?php echo $_blog2Item->getContent() ?></div>
+
+    <div class="pager">
+        <a href="<?php echo $this->getBackUrl() ?>">
+            <?php echo __('Return to list') ?>
+        </a>
+    </div>
+</div>

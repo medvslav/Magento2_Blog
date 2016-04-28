@@ -1,0 +1,26 @@
+<?php $_blog2 = $this->getCollection(); ?>
+<?php if ($_blog2->getSize()): ?>
+<div class="blog2_list_view">
+    <?php foreach ($_blog2 as $blog2Item): ?>
+        <div id="item_<?php echo $blog2Item->getId() ?>" class="blog2_list_item">
+            <h2>
+                <a href="<?php echo $this->getItemUrl($blog2Item) ?>">
+                    <?php echo $this->escapeHtml($blog2Item->getTitle()) ?>
+                </a>
+            </h2>
+
+            <div class="blog2_item_subtitle">
+                <?php echo $this->formatDate($blog2Item->getPublishedAt()) ?> |
+                <?php echo $this->escapeHtml($blog2Item->getAuthor()) ?>
+            </div>
+
+            <?php if ($imageUrl = $this->getImageUrl($blog2Item, 100)): ?>
+               <p><img src="<?php echo $imageUrl ?>" alt="<?php echo $this->escapeHtml($blog2Item->getTitle()); ?>" /></p>
+            <?php endif; ?>
+        </div>
+    <?php endforeach; ?>
+</div>
+<?php echo $this->getPager() ?>
+<?php else: ?>
+    <div class="message info empty"><span><?php echo __('You have no Blog2.'); ?></span></div>
+<?php endif ?>
